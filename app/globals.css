@@ -324,3 +324,18 @@
 .text-ares-2    { color: var(--c-text-2); }
 .text-ares-3    { color: var(--c-text-3); }
 .text-ares-4    { color: var(--c-text-4); }
+
+/* Campo de formulário padrão (inputs/selects das telas de admin) */
+.field {
+  background: var(--c-panel);
+  border: 1px solid var(--c-border-input);
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  color: var(--c-text-1);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgb(245 158 11 / 0.2);
+}

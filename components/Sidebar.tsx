@@ -7,7 +7,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import {
   ClipboardCheck, ExternalLink, FileText,
   X, Package, Plane, Truck, TrendingUp, Building2, RefreshCw, BarChart2, Gauge,
-  ChevronUp, Camera, Activity, LogOut, User,
+  ChevronUp, Camera, Activity, LogOut, User, Bot,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -21,6 +21,7 @@ const NAV_ITEMS = [
   { label: "Remessas",           icon: <Truck           className="w-4 h-4" />, href: "/remessas", adminOnly: false },
   { label: "Canhotos",           icon: <ClipboardCheck  className="w-4 h-4" />, href: "/canhotos", adminOnly: false },
   { label: "Portal Cliente",     icon: <Building2       className="w-4 h-4" />, href: "/cliente",  adminOnly: false },
+  { label: "Predator",           icon: <Bot             className="w-4 h-4" />, href: "/predator", adminOnly: true  },
 ];
 
 const EXTERNAL_ITEMS = [
