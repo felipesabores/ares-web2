@@ -2,23 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/session";
 import { query } from "@/lib/db";
 
-async function ensureTable() {
-  await query(`
-    CREATE TABLE IF NOT EXISTS user_profiles (
-      username TEXT PRIMARY KEY,
-      email    TEXT,
-      phone    TEXT,
-      avatar   TEXT,
-      updated_at TIMESTAMPTZ DEFAULT NOW()
-    )
-  `);
-}
+// A tabela user_profiles é criada pela migration db/migrations/002_user_profiles.sql:
+// o usuário do banco da aplicação não tem permissão de CREATE.
 
 export async function GET() {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "unauthorized" }, { status: 401 });
 
-  await ensureTable();
   const rows = await query<{ email: string; phone: string; avatar: string }>(
     `SELECT email, phone, avatar FROM user_profiles WHERE username = $1`,
     [session.username]
@@ -40,7 +30,6 @@ export async function PUT(req: NextRequest) {
 
   const { email, phone } = await req.json();
 
-  await ensureTable();
   await query(
     `INSERT INTO user_profiles (username, email, phone, updated_at)
      VALUES ($1, $2, $3, NOW())
